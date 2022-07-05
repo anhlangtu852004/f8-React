@@ -1,0 +1,86 @@
+import './App.css';
+import { useState } from 'react';
+
+
+function App() {
+  const [count,setCount] = useState(0);
+
+  const handleIncrease = () => {
+    setCount(count + 1)
+  }
+  const handleDescrease = () => {
+    setCount(count - 1)
+  }
+
+  return (
+    <fragment>
+      <h1>{count}</h1>
+      <button onClick={handleIncrease}>tang</button>
+      <button onClick={handleDescrease}>Giam</button>
+    </fragment>
+  );
+}
+
+export default App;
+
+
+
+///////////////////check in list useState
+import './App.css';
+// import React from 'react';
+import { useState } from 'react';
+
+const courses = [
+  {
+    id:1,
+    name: 'jva'
+  },
+  {
+    id:2,
+    name: 'reduc'
+  },
+  {
+    id:3,
+    name: 'php'
+  },
+
+]
+
+function App() {
+  const [checked,setChecked]  = useState([]);
+
+  const handleChecked = (id) =>{
+    setChecked(prev => {
+      if(checked.includes(id)){
+        return checked.filter( item => item !== id )
+      }else{
+        return [...prev,id]
+    }
+  })
+
+  }
+  console.log(checked)
+
+  return (
+    <div>
+      {courses.map(course => (
+        <div key={course.id}>
+          <input 
+            type='checkbox'
+            checked = {checked.includes(course.id)}
+            onChange={() => handleChecked(course.id)}
+          /> 
+            
+            {course.name}
+
+        </div>
+      ) )}
+
+    </div>
+  );
+}
+
+export default App;
+ 
+
+
