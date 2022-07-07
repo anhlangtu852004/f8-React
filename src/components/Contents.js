@@ -1,29 +1,60 @@
-import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useReducer,useRef,useState } from "react";
 
+let idCount = 0
+let initialSate = []
+
+const reducer = (state, action) => {
+    switch (action.type){
+        case 'ADD' :
+            return [...state,action.payload]
+        case 'SET':
+            return 
+        default:
+            throw new Error('action sai')
+    }
+
+}
 
 function Contents() {
-    const [timer, setTimer] = useState(180)
-    
-    
-    useEffect( () => {
-       const timerId = setInterval( () => {
-        setTimer(timer - 1)
-       },1000)
+    const [inputValue,setInputValue] = useState('')
+    const [stateList,dispatch] = useReducer(reducer, initialSate)
+    const inputElement = useRef()
 
-       return () => {
-        clearInterval(timerId) 
+    const handleAddtoState = ()=>{
+        dispatch({
+            type: "ADD",
+            payload: {
+                id: ++idCount,
+                name:inputValue
+            }
+        })
+        dispatch({
+            
+        })
+        inputElement.current.focus()
     }
-    },[timer]
-    
-   
-
-    )
-    
-
+    // console.log(inputElement.current.focus());
+    console.log(stateList);
     return (  
         <div>
-            {timer}
+            <h1>to do list</h1>     
+           <input 
+                type='text' 
+                placeholder="nhap cong viec vao"
+                // onChange={}
+                ref={inputElement}
+           />
+           <button onClick={handleAddtoState}>add</button>
+           {/* <ul>
+                {stateList.map((state)=>(
+                    <div key={state.id}>
+                        <li >{state.name}</li>
+                        <button>xoa</button>
+                    </div>
+                )
+                    
+                )}
+           </ul> */}
         </div>
 
     );

@@ -166,3 +166,48 @@ function Contents() {
 export default Contents;
 
 ************end timmer *********************
+
+
+*******************dom envent*****************
+import { useCallback, useEffect, useState } from "react";
+
+const sources = [
+    {id:1,name:'java'},
+    {id:2,name:'php'},
+    {id:3,name:'ract'},
+]
+
+
+function Contents() {
+    const [active, setActive] = useState(1);
+
+    useEffect(()=>{
+        const handleShow = (e) => {
+            console.log(e.detail);
+        }
+        window.addEventListener(`build-${active}`,handleShow)
+        return () => {
+            window.removeEventListener(`build-${active}`,handleShow)
+        }
+    },[active])
+
+    return (  
+        <div>
+            <ul>
+                {sources.map(source => (
+                    <li 
+                        key={source.id}
+                        style={{color: active===source.id?'red':'black' }}
+                        onClick = {() => setActive(source.id)}
+                    >
+                        {source.name}
+                    </li>
+                ))} 
+            </ul>       
+        </div>
+
+    );
+}
+
+export default Contents;
+******************** end dom event****************

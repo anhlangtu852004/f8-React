@@ -3,21 +3,6 @@ import './App.css';
 import { useState } from 'react';
 import Contents from './components/Contents';
 
-const courses = [
-  {
-    id:1,
-    name: 'jva'
-  },
-  {
-    id:2,
-    name: 'reduc'
-  },
-  {
-    id:3,
-    name: 'php'
-  },
-
-]
 
 function App() {
   const [show, setShow] =useState(false)

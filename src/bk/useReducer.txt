@@ -1,0 +1,40 @@
+------------ 
+import { useEffect, useRef, useState, useCallback, useReducer } from "react";
+
+const DOWN_ACTION = 'down';
+const UP_ACTION = 'up';
+const initialSate = 0
+
+const reducer = (state, action) => {
+    switch (action){
+        case DOWN_ACTION :
+            return state -1
+        case UP_ACTION:
+            return state + 1
+        default:
+            throw new Error('action sai')
+    }
+
+}
+
+
+------------------------ start to do list ---------------------------
+
+------------------------ end to do list ---------------------------
+
+function Contents() {
+    
+    const [count,dispatch] = useReducer(reducer, initialSate)
+
+
+    return (  
+        <div>
+            <h1>{count}</h1>     
+           <button onClick={() => dispatch(UP_ACTION)}>tang</button>
+           <button onClick={() => dispatch(DOWN_ACTION)}>giam</button>
+        </div>
+
+    );
+}
+
+export default Contents;

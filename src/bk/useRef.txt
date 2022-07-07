@@ -1,0 +1,63 @@
+App.js
+import './App.css';
+// import React from 'react';
+import { useState } from 'react';
+import Contents from './components/Contents';
+
+
+function App() {
+  const [show, setShow] =useState(false)
+
+  const handleShow = () => show ? setShow(false) : setShow(true)
+  
+  return (
+    <div>
+      <button onClick={handleShow}>tongle</button>
+      {show && <Contents />}
+
+    </div>
+  );
+}
+
+export default App;
+ 
+
+
+
+--------------------------
+import { useEffect, useRef, useState } from "react";
+
+
+
+function Contents() {
+    const [count, setCount] = useState(60)
+    const timerId = useRef()
+    const prev = useRef()
+    
+    const handleStart = () => {
+        timerId.current = setInterval(()=> {
+            
+            setCount(prevCount =>{ 
+                prev.current = prevCount
+                return prevCount -1})
+        },1000)
+    }
+
+    const handleStop = () => {
+        clearInterval(timerId.current)
+    }
+
+    console.log(count,prev.current);
+    return (  
+        <div>
+            <h1>{count}</h1>     
+            <button onClick={handleStart}>start</button>
+            <button onClick={handleStop}>stop</button>
+
+          
+        </div>
+
+    );
+}
+
+export default Contents;
