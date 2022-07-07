@@ -1,8 +1,8 @@
 import './App.css';
 // import React from 'react';
 import { useState } from 'react';
-import Contents from './components/Contents';
-
+// import Contents from './components/Contents';
+import Cart from './components/Cart';
 
 function App() {
   const [show, setShow] =useState(false)
@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <button onClick={handleShow}>tongle</button>
-      {show && <Contents />}
+      {show && <Cart />}
 
     </div>
   );
