@@ -2,7 +2,8 @@ import './App.css';
 // import React from 'react';
 import { useState } from 'react';
 // import Contents from './components/Contents';
-import Cart from './components/Cart';
+// import Cart from './components/Cart';
+import PracticeCss from './components/PracticeCss'
 
 function App() {
   const [show, setShow] =useState(false)
@@ -12,7 +13,7 @@ function App() {
   return (
     <div>
       <button onClick={handleShow}>tongle</button>
-      {show && <Cart />}
+      {show && <PracticeCss />}
 
     </div>
   );
